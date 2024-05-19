@@ -4,9 +4,9 @@ const cors = require('cors')
 require('dotenv').config()
 require('./db/database.js');
 
-const usersRouter = require("./routes/usersRoute.js");
-const exercisesRouter = require("./routes/exercisesRoute.js");
-const logsRouter = require("./routes/logsRoute.js");
+const usersRouter = require("./routes/usersRoutes.js");
+const exercisesRouter = require("./routes/exercisesRoutes.js");
+const logsRouter = require("./routes/logsRoutes.js");
 
 app.use(cors())
 app.use(express.static('public'))
