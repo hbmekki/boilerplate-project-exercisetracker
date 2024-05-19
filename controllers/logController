@@ -1,1 +1,29 @@
+const Exercise = require('../models/exerciseModel.js');
+const User = require('../models/userModel.js');
 
+
+// Display list of all Authors.
+exports.getLogs = (req, res) => {
+   User.findById(req.params._id)
+    .then(user => {
+        Exercise.find({userId: user._id})
+            .then(exercises => {
+                res.json({
+                    username: user.username,
+                    _id: user._id,
+                    count: exercises.length,
+                    logs: exercises.map(exercise => ({
+                        description: exercise.description,
+                        duration: exercise.duration,
+                        date: exercise.date.toDateString()
+                    }))
+                })
+            })
+            .catch (err => {
+                console.log(err)
+              })
+    })
+    .catch (err => {
+      console.log(err)
+    })
+};
